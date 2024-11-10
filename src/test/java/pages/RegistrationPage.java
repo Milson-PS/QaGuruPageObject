@@ -4,10 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponents;
 import pages.components.TableFormComponents;
 
-import java.time.LocalDate;
-import java.time.format.TextStyle;
-import java.util.Locale;
-
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -64,15 +60,11 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirth(LocalDate birthday) {
+    public RegistrationPage setDateOfBirth(String day, String month, String year) {
         calendarInput.click();
-        calendarComponents.setDate(String.format("%02d", birthday.getDayOfMonth()),
-                birthday.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
-                String.valueOf(birthday.getYear()));
-
+        calendarComponents.setDate(day, month, year);
         return this;
     }
-
 
 
     public RegistrationPage setSubjects(String value) {
