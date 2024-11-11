@@ -29,9 +29,12 @@ public class RegistrationPage {
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        return this;
+    }
+
+    public RegistrationPage cleanBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
-
         return this;
     }
 
@@ -102,7 +105,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage Submit() {
+    public RegistrationPage submit() {
         submitClick.click();
         return this;
     }

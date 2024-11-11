@@ -11,6 +11,7 @@ public class RegistrationTests extends TestBase {
     @Test
     void fillFormTest() {
         registrationPage.openPage()
+                .cleanBanner()
                 .setFirstName("Pavel")
                 .setLastName("Milyukov")
                 .setUserEmail("milyukov@yandex.ru")
@@ -23,7 +24,7 @@ public class RegistrationTests extends TestBase {
                 .setAddress("ул.Ленина")
                 .setState("NCR")
                 .setCity("Noida")
-                .Submit();
+                .submit();
 
         registrationPage
                 .checkTableResponse("Student Name", "Pavel Milyukov")
@@ -41,6 +42,7 @@ public class RegistrationTests extends TestBase {
     @Test
     void minimumAmountData() {
         registrationPage.openPage()
+                .cleanBanner()
                 .setFirstName("Pavel")
                 .setLastName("Milyukov")
                 .setUserEmail("milyukov@yandex.ru")
@@ -49,7 +51,7 @@ public class RegistrationTests extends TestBase {
                 .setDateOfBirth("16", "January", "1993")
                 .setHobbies("Sports")
                 .setAddress("ул.Ленина")
-                .Submit();
+                .submit();
 
         registrationPage
                 .checkTableResponse("Student Name", "Pavel Milyukov")
@@ -64,12 +66,13 @@ public class RegistrationTests extends TestBase {
     @Test
     void incorrectPhoneNumberTest() {
         registrationPage.openPage()
+                .cleanBanner()
                 .setFirstName("FirstName")
                 .setLastName("LastName")
                 .setGender("Male")
                 .setNumber("5553535")
                 .setDateOfBirth("17", "July", "2003")
-                .Submit();
+                .submit();
 
         registrationPage.checkResultIsNotVisible();
 
