@@ -83,6 +83,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
+    @Tag("demoqa")
     void minimumAmountData() {
         registrationPage.openPage()
                 .cleanBanner()
@@ -107,6 +108,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
+    @Tag("demoqa")
     void incorrectPhoneNumberTest() {
         registrationPage.openPage()
                 .cleanBanner()
