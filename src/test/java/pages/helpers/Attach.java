@@ -38,9 +38,23 @@ public class Attach {
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo() {
-        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
-                + "' type='video/mp4'></video></body></html>";
+        URL videoUrl = getVideoUrl();
+        return generateVideoHtml(videoUrl);
+    }
+
+    private static String generateVideoHtml(URL videoUrl) {
+        if (videoUrl == null) {
+            return "<html><body><p>Video URL is not available.</p></body></html>";
+        }
+
+        // Используем StringBuilder для повышения производительности при конкатенации строк
+        StringBuilder htmlBuilder = new StringBuilder();
+        htmlBuilder.append("<html><body>")
+                .append("<video width='100%' height='100%' controls autoplay>")
+                .append("<source src='").append(videoUrl.toString()).append("' type='video/mp4'>")
+                .append("</video></body></html>");
+
+        return htmlBuilder.toString();
     }
 
     public static URL getVideoUrl() {
@@ -48,9 +62,9 @@ public class Attach {
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            // Логируем ошибку и возвращаем null
+            System.err.println("Invalid video URL: " + videoUrl);
+            return null;
         }
-        return null;
     }
 }
-
